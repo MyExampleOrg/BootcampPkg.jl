@@ -22,10 +22,11 @@ permissions:
   statuses: read
 jobs:
   TagBot:
-    if: github.event_name == 'workflow_dispatch' || github.actor == 'JuliaTagBot'
+    if: github.event_name == 'workflow_dispatch' || github.actor == 'artememelin'
     runs-on: ubuntu-latest
     steps:
       - uses: JuliaRegistries/TagBot@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           ssh: ${{ secrets.DOCUMENTER_KEY }}
+          registry: MyExampleOrg/ExampleRegistry.jl
