@@ -6,28 +6,20 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-      
-    - name: Setup Julia
-      uses: julia-actions/setup-julia@v1
-      with:
-        version: '1'
-        
-    - name: Install Git
-      run: sudo apt-get update -qq && sudo apt-get install -y -qq git
-      
-    - name: Configure Git
-      run: |
-        git config --global user.email "artememelin@bootcamp-bhft.com"
-        git config --global user.name "artememelin"
-        
-    - name: Set Julia Registry
-      run: export JULIA_REGISTRY="https://github.com/MyExampleOrg/ExampleRegistry.jl"
+      - uses: actions/checkout@v2
+      - uses: julia-actions/setup-julia@v1
+        with:
+          version: '1'
 
-    - name: Login to GitHub with Token
-      run: echo -n "x-access-token:${{ secrets.TEST_TOKEN }}" > ~/.netrc && chmod 600 ~/.netrc
+      - name: Configure Git
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq git
+          git config --global user.email "artememelin@bootcamp-bhft.com"
+          git config --global user.name "artememelin"
+          echo -n "x-access-token:${{ secrets.TEST_TOKEN }}" > ~/.netrc && chmod 600 ~/.netrc
 
-    - name: Julia Package Registry Job
-      run: |
-        julia -e 'println("$JULIA_REGISTRY")'
+      - name: Julia Package Registry Job
+        env:
+          JULIA_REGISTRY: "https://github.com/MyExampleOrg/ExampleRegistry.jl"
+        run: |
+          julia -e 'println("$JULIA_REGISTRY")'
