@@ -21,10 +21,9 @@ jobs:
       - name: Julia Package Registry Job
         env:
           JULIA_REGISTRY: "https://github.com/MyExampleOrg/ExampleRegistry.jl"
-          CI_PROJECT_NAME: ${{ github.action_repository}}
         run: |
           julia -e '
-          name = first(split("$(ENV["CI_PROJECT_NAME"])", "."))
+          name = first(split("$(${{ github.action_repository}})", "."))
           println(name)
           println(1)
           '
