@@ -22,4 +22,4 @@ jobs:
         env:
           JULIA_REGISTRY: "https://github.com/MyExampleOrg/ExampleRegistry.jl"
         run: |
-          julia -e 'println("$JULIA_REGISTRY")'
+          julia -e 'println(ENV["JULIA_REGISTRY"])'
