@@ -1,5 +1,8 @@
 name: Julia Package Registry
 on:
+  push:
+    branches:
+      - master
   workflow_dispatch:
 jobs:
   pkg-registry:
@@ -21,9 +24,10 @@ jobs:
       - name: Julia Package Registry Job
         env:
           JULIA_REGISTRY: "https://github.com/MyExampleOrg/ExampleRegistry.jl"
+          REPOSITORY_PATH: "${{ github.repository }}"
         run: |
           julia -e '
-          name = second(split("$(${{ github.repository}})", "/"))
+          name = second(split("$(ENV["REPOSITORY_PATH"])", "/"))
           println(name)
           println(1)
           '
