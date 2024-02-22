@@ -24,7 +24,7 @@ jobs:
           CI_PROJECT_NAME: ${{ github.action_repository}}
         run: |
           julia -e '
-          name = first(split("$CI_PROJECT_NAME", "."))
+          name = first(split("$(env["CI_PROJECT_NAME"])", "."))
           println(name)
           println(1)
           '
