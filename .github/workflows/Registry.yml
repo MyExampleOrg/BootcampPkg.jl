@@ -27,7 +27,7 @@ jobs:
           REPOSITORY_PATH: "${{ github.repository }}"
         run: |
           julia -e '
-          name = second(split("$(ENV["REPOSITORY_PATH"])", "/"))
+          name = (split("$(ENV["REPOSITORY_PATH"])", "/"))[2]
           println(name)
           println(1)
           '
