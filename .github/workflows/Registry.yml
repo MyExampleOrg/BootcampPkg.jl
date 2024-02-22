@@ -23,7 +23,7 @@ jobs:
           JULIA_REGISTRY: "https://github.com/MyExampleOrg/ExampleRegistry.jl"
         run: |
           julia -e '
-          name = first(split("$(${{ github.action_repository}})", "."))
+          name = second(split("$(${{ github.repository}})", "/"))
           println(name)
           println(1)
           '
