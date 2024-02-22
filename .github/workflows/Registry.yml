@@ -1,0 +1,33 @@
+name: Julia Package Registry
+on:
+  workflow_dispatch:
+jobs:
+  pkg-registry:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+      
+    - name: Setup Julia
+      uses: julia-actions/setup-julia@v1
+      with:
+        version: '1'
+        
+    - name: Install Git
+      run: apt-get update -qq && apt-get install -y -qq git
+      
+    - name: Configure Git
+      run: |
+        git config --global user.email "artememelin@bootcamp-bhft.com"
+        git config --global user.name "artememelin"
+        
+    - name: Set Julia Registry
+      run: export JULIA_REGISTRY="https://github.com/MyExampleOrg/ExampleRegistry.jl"
+
+    - name: Login to GitHub with Token
+      run: echo -n "x-access-token:${{ secrets.TEST_TOKEN }}" > ~/.netrc && chmod 600 ~/.netrc
+
+    - name: Julia Package Registry Job
+      run: |
+        julia -e 'println("$JULIA_REGISTRY")'
