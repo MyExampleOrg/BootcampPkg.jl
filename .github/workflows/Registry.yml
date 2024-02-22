@@ -22,4 +22,7 @@ jobs:
         env:
           JULIA_REGISTRY: "https://github.com/MyExampleOrg/ExampleRegistry.jl"
         run: |
-          julia -e 'println(ENV["JULIA_REGISTRY"])'
+          julia -e "
+          name = first(split(\"$CI_PROJECT_NAME\", \".\"))
+          println(name)
+          "
