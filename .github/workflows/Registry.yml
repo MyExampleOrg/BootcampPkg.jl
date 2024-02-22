@@ -27,7 +27,20 @@ jobs:
           REPOSITORY_PATH: "${{ github.repository }}"
         run: |
           julia -e '
-          name = (split("$(ENV["REPOSITORY_PATH"])", "/"))[2]
-          println(name)
-          println(1)
+          using Pkg
+          Pkg.update()
+          
+          Pkg.Registry.add(RegistrySpec(url = ENV["JULIA_REGISTRY"]))
+          
+          Pkg.add("LocalRegistry")
+          using LocalRegistry
+
+          name = (split("$(ENV["REPOSITORY_PATH"])", ["/", "."]))[2]
+
+          LocalRegistry.register(
+            name,
+            registry = ENV["$JULIA_REGISTRY"],
+            commit = true, push = true,
+            ignore_reregistration = true,
+          )
           '
