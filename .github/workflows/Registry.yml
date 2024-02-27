@@ -16,20 +16,12 @@ jobs:
       - uses: julia-actions/setup-julia@v1
         with:
           version: '1'
-
-      - name: Setup SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "$SSH_KEY" | tr -d '\r' > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan github.com > ~/.ssh/known_hosts
-          
+ 
       - name: Configure Git
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq git
           git config --global user.email "artememelin@bootcamp-bhft.com"
           git config --global user.name "artememelin"
-          git remote set-url origin https://$artememelin:${{ secrets.TEST_TOKEN }}@github.com/MyExampleOrg/ExampleRegistry.jl.git
 
       - name: Julia Package Registry Job
         env:
