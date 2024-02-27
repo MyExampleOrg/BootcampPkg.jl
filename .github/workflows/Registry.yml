@@ -26,7 +26,6 @@ jobs:
           JULIA_REGISTRY: "https://github.com/MyExampleOrg/ExampleRegistry.jl"
           REPOSITORY_PATH: "${{ github.repository }}"
           REPOSITORY_URL: "${{ github.repositoryUrl }}"
-          JULIA_PKG_USE_CLI_GIT: true
         run: |
           julia -e '
           using Pkg
@@ -39,7 +38,8 @@ jobs:
           using LocalRegistry
 
           name = split(split("$(ENV["REPOSITORY_PATH"])", "/")[2], ".")[1]
-
+          Pkg.activate(name)
+          
           LocalRegistry.register(
             name,
             registry = ENV["JULIA_REGISTRY"],
