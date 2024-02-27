@@ -22,11 +22,11 @@ jobs:
           sudo apt-get update -qq && sudo apt-get install -y -qq git
           git config --global user.email "artememelin@bootcamp-bhft.com"
           git config --global user.name "artememelin"
-          git config --global --add url."https://${{ secrets.FULL_TOKEN }}:x-oauth-basic@github".insteadOf https://github
+          # git config --global --add url."https://${{ secrets.FULL_TOKEN }}:x-oauth-basic@github".insteadOf https://github
 
       - name: Julia Package Registry Job
         env:
-          JULIA_REGISTRY: "https://github.com/MyExampleOrg/ExampleRegistry.jl"
+          JULIA_REGISTRY: "https://${{ secrets.FULL_TOKEN }}:x-oauth-token@github.com/MyExampleOrg/ExampleRegistry.jl"
           REPOSITORY_PATH: "${{ github.repository }}"
         run: |
           julia -e '
@@ -46,7 +46,5 @@ jobs:
             registry = ENV["JULIA_REGISTRY"],
             commit = true, push = true,
             ignore_reregistration = true,
-            gitconfig = Dict("user.name" => "artememelin",
-            "user.email" => "artememelin@bootcamp-bhft.com")
           )
           '
