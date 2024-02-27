@@ -32,7 +32,7 @@ jobs:
           Pkg.update()
           
           Pkg.Registry.add(RegistrySpec(url = ENV["JULIA_REGISTRY"]))
-          Pkg.develop(url = joinpath("https://github.com", ENV["REPOSITORY_PATH"], ".git"))
+          Pkg.develop(url = "https://github.com/" * ENV["REPOSITORY_PATH"] * ".git"))
           
           Pkg.add("LocalRegistry")
           using LocalRegistry
