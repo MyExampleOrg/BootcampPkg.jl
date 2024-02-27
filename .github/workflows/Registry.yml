@@ -35,7 +35,7 @@ jobs:
           Pkg.add("LocalRegistry")
           using LocalRegistry
 
-          name = (split("$(ENV["REPOSITORY_PATH"])", ["/", "."]))[2]
+          name = split(split("$(ENV["REPOSITORY_PATH"])", "/")[2])[1]
 
           LocalRegistry.register(
             name,
