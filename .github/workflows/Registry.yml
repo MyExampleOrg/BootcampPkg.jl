@@ -39,7 +39,7 @@ jobs:
 
           LocalRegistry.register(
             name,
-            registry = ENV["$JULIA_REGISTRY"],
+            registry = ENV["JULIA_REGISTRY"],
             commit = true, push = true,
             ignore_reregistration = true,
           )
