@@ -30,10 +30,10 @@ jobs:
           JULIA_REGISTRY: "https://github.com/MyExampleOrg/ExampleRegistry.jl"
           REPOSITORY_PATH: "${{ github.repository }}"
           REPOSITORY_URL: "${{ github.repositoryUrl }}"
-          JULIA_PKG_USE_CLI_GIT: true
+          # JULIA_PKG_USE_CLI_GIT: true
         run: |
           julia -e '
-          ENV["JULIA_PKG_USE_CLI_GIT"]=true
+          # ENV["JULIA_PKG_USE_CLI_GIT"]=true
           using Pkg
           Pkg.update()
           
