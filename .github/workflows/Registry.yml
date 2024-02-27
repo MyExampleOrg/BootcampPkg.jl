@@ -9,10 +9,6 @@ jobs:
     
     steps:
       - uses: actions/checkout@v4
-      # - uses: actions/checkout@v4
-      #   with:
-      #      repository: MyExampleOrg/ExampleRegistry.jl
-      #      token: ${{ secrets.FULL_TOKEN }}
       - uses: julia-actions/setup-julia@v1
         with:
           version: '1'
@@ -25,7 +21,7 @@ jobs:
 
       - name: Julia Package Registry Job
         env:
-          JULIA_REGISTRY: "https://${{ secrets.FULL_TOKEN }}@github.com/MyExampleOrg/ExampleRegistry.jl"
+          JULIA_REGISTRY: "https://${{ secrets.REGISTRATOR_TOKEN }}@github.com/MyExampleOrg/ExampleRegistry.jl"
           REPOSITORY_PATH: "${{ github.repository }}"
         run: |
           julia -e '
