@@ -21,7 +21,7 @@ jobs:
 
       - name: Julia Package Registry Job
         env:
-          JULIA_REGISTRY: "https://${{ secrets.REGISTRATOR_TOKEN }}@github.com/MyExampleOrg/ExampleRegistry.jl"
+          JULIA_REGISTRY: "https://${{ secrets.REGISTRATOR_TOKEN_2 }}@github.com/MyExampleOrg/ExampleRegistry.jl"
           REPOSITORY_PATH: "${{ github.repository }}"
         run: |
           julia -e '
