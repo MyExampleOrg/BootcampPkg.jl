@@ -16,10 +16,11 @@ jobs:
 
       - name: Configure Git
         run: |
-          sudo apt-get update -qq && sudo apt-get install -y -qq git
-          git config --global user.email "artememelin@bootcamp-bhft.com"
-          git config --global user.name "artememelin"
-          echo -n "x-access-token:${{ secrets.TEST_TOKEN }}" > ~/.netrc && chmod 600 ~/.netrc
+          # sudo apt-get update -qq && sudo apt-get install -y -qq git
+          # git config --global user.email "artememelin@bootcamp-bhft.com"
+          # git config --global user.name "artememelin"
+          # echo -n "x-access-token:${{ secrets.TEST_TOKEN }}" > ~/.netrc && chmod 600 ~/.netrc
+          gh auth login --with-token <<< ${{ secrets.TEST_TOKEN }}
 
       - name: Julia Package Registry Job
         env:
