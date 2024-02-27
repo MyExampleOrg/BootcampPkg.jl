@@ -28,6 +28,7 @@ jobs:
         run: |
           git config --global user.email "artememelin@bootcamp-bhft.com"
           git config --global user.name "artememelin"
+          git remote set-url origin https://$artememelin:${{ secrets.TEST_TOKEN }}@github.com/MyExampleOrg/ExampleRegistry.jl.git
 
       # - name: Configure Git
       #   run: |
