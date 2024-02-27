@@ -38,7 +38,6 @@ jobs:
           using LocalRegistry
 
           name = split(split("$(ENV["REPOSITORY_PATH"])", "/")[2], ".")[1]
-          Pkg.activate(name)
           
           LocalRegistry.register(
             name,
