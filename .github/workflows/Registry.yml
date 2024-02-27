@@ -1,8 +1,7 @@
 name: Julia Package Registry
 on:
   push:
-    branches:
-      - master
+    tags: ['*']
   workflow_dispatch:
 jobs:
   pkg-registry:
@@ -18,42 +17,18 @@ jobs:
         with:
           version: '1'
 
-      - name: Install Git
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq git
-        
-      # - name: Setup SSH
-      #   run: |
-      #     mkdir -p ~/.ssh
-      #     echo "$SSH_KEY" | tr -d '\r' > ~/.ssh/id_rsa
-      #     chmod 600 ~/.ssh/id_rsa
-      #     ssh-keyscan github.com > ~/.ssh/known_hosts
-          
       - name: Configure Git
         run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq git
           git config --global user.email "artememelin@bootcamp-bhft.com"
           git config --global user.name "artememelin"
-      #     git remote set-url origin https://$artememelin:${{ secrets.TEST_TOKEN }}@github.com/MyExampleOrg/ExampleRegistry.jl.git
-
-      # - name: Configure Git
-      #   run: |
-      #     sudo apt-get update -qq && sudo apt-get install -y -qq git
-      #     git config --global user.email "artememelin@bootcamp-bhft.com"
-      #     git config --global user.name "artememelin"
-      #     echo -n "x-access-token:${{ secrets.TEST_TOKEN }}" > ~/.netrc && chmod 600 ~/.netrc
-      #     # gh auth login --with-token <<< ${{ secrets.TEST_2 }}
-      #     # gh auth status
-      #     # gh config set email "artememelin@bootcamp-bhft.com"
-      #     # gh config set name "artememelin"
 
       - name: Julia Package Registry Job
         env:
           JULIA_REGISTRY: "https://github.com/MyExampleOrg/ExampleRegistry.jl"
           REPOSITORY_PATH: "${{ github.repository }}"
-          REPOSITORY_URL: "${{ github.repositoryUrl }}"
-          # JULIA_PKG_USE_CLI_GIT: true
         run: |
           julia -e '
-          # ENV["JULIA_PKG_USE_CLI_GIT"]=true
           using Pkg
           Pkg.update()
           
@@ -65,7 +40,6 @@ jobs:
 
           name = split(split("$(ENV["REPOSITORY_PATH"])", "/")[2], ".")[1]
 
-          @info ENV["JULIA_REGISTRY"]
           LocalRegistry.register(
             name,
             registry = ENV["JULIA_REGISTRY"],
