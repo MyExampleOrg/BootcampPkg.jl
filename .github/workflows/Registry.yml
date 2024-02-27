@@ -21,8 +21,8 @@ jobs:
           # git config --global user.name "artememelin"
           # echo -n "x-access-token:${{ secrets.TEST_TOKEN }}" > ~/.netrc && chmod 600 ~/.netrc
           gh auth login --with-token <<< ${{ secrets.TEST_TOKEN }}
-          gh config set user.email "artememelin@bootcamp-bhft.com" --global 
-          gh config set user.name "artememelin" --global 
+          gh config set user.email "artememelin@bootcamp-bhft.com"
+          gh config set user.name "artememelin"
 
       - name: Julia Package Registry Job
         env:
