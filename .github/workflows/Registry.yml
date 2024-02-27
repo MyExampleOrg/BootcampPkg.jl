@@ -25,14 +25,14 @@ jobs:
         env:
           JULIA_REGISTRY: "https://github.com/MyExampleOrg/ExampleRegistry.jl"
           REPOSITORY_PATH: "${{ github.repository }}"
-          REPOSITORY_URL: "${{github.repositoryUrl}}"
+          REPOSITORY_URL: "${{ github.repositoryUrl }}"
         run: |
           julia -e '
           using Pkg
           Pkg.update()
           
           Pkg.Registry.add(RegistrySpec(url = ENV["JULIA_REGISTRY"]))
-          Pkg.develop(url = ENV["REPOSITORY_URL"])
+          Pkg.develop(url = joinpath("https://github.com", ENV["REPOSITORY_PATH"], ".git"))
           
           Pkg.add("LocalRegistry")
           using LocalRegistry
