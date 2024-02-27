@@ -9,10 +9,10 @@ jobs:
     
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/checkout@v4
-        with:
-           repository: MyExampleOrg/ExampleRegistry.jl
-           token: ${{ secrets.FULL_TOKEN }}
+      # - uses: actions/checkout@v4
+      #   with:
+      #      repository: MyExampleOrg/ExampleRegistry.jl
+      #      token: ${{ secrets.FULL_TOKEN }}
       - uses: julia-actions/setup-julia@v1
         with:
           version: '1'
