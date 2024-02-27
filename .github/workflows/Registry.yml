@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
            repository: MyExampleOrg/ExampleRegistry.jl
-           token: ${{ secrets.TEST_TOKEN }}
+           token: ${{ secrets.TEST_2 }}
       - uses: julia-actions/setup-julia@v1
         with:
           version: '1'
