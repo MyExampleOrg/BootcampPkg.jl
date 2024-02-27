@@ -38,7 +38,8 @@ jobs:
           using LocalRegistry
 
           name = split(split("$(ENV["REPOSITORY_PATH"])", "/")[2], ".")[1]
-          
+
+          @info ENV["JULIA_REGISTRY"]
           LocalRegistry.register(
             name,
             registry = ENV["JULIA_REGISTRY"],
