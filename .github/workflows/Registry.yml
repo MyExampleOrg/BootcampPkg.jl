@@ -51,7 +51,7 @@ jobs:
             registry = ENV["JULIA_REGISTRY"],
             commit = true, push = true,
             ignore_reregistration = true,
-            git_config = Dict("user.name" => "artememelin",
+            gitconfig = Dict("user.name" => "artememelin",
                   "user.email" => "artememelin@bootcamp-bhft.com")
           )
           '
