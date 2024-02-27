@@ -20,7 +20,7 @@ jobs:
           git config --global user.email "artememelin@bootcamp-bhft.com"
           git config --global user.name "artememelin"
           # echo -n "x-access-token:${{ secrets.TEST_TOKEN }}" > ~/.netrc && chmod 600 ~/.netrc
-          gh auth login --with-token <<< ${{ secrets.TEST_TOKEN }}
+          gh auth login --with-token < ${{ secrets.TEST_TOKEN }}
           # gh config set email "artememelin@bootcamp-bhft.com"
           # gh config set name "artememelin"
 
