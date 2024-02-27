@@ -21,14 +21,15 @@ jobs:
           # git config --global user.name "artememelin"
           # echo -n "x-access-token:${{ secrets.TEST_TOKEN }}" > ~/.netrc && chmod 600 ~/.netrc
           gh auth login --with-token <<< ${{ secrets.TEST_TOKEN }}
-          gh config set user.email "artememelin@bootcamp-bhft.com"
-          gh config set user.name "artememelin"
+          gh config set email "artememelin@bootcamp-bhft.com"
+          gh config set name "artememelin"
 
       - name: Julia Package Registry Job
         env:
           JULIA_REGISTRY: "https://github.com/MyExampleOrg/ExampleRegistry.jl"
           REPOSITORY_PATH: "${{ github.repository }}"
           REPOSITORY_URL: "${{ github.repositoryUrl }}"
+          JULIA_PKG_USE_CLI_GIT: true
         run: |
           julia -e '
           using Pkg
