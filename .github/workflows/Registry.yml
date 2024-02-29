@@ -4,8 +4,9 @@ on:
     tags: ['*']
   workflow_dispatch:
 jobs:
-  pkg-registry:
+  registry:
     runs-on: ubuntu-latest
-    
-    steps:
-      - uses: MyExampleOrg/ExampleRegistry.jl@master
+      uses: MyExampleOrg/ExampleRegistry.jl@master
+      with:
+       registrator_token: ${{ secrets.REGISTRATOR_TOKEN_2 }}
+       repository: ${{ github.repository }}
