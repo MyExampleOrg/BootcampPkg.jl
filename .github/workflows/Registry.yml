@@ -7,5 +7,6 @@ jobs:
   registry:
     uses: MyExampleOrg/ExampleRegistry.jl/.github/workflows/Registry.yml@master
     with:
-     registrator_token: ${{ secrets.REGISTRATOR_TOKEN_2 }}
      repository: ${{ github.repository }}
+    secrets:
+      registrator_token: ${{ secrets.REGISTRATOR_TOKEN_2 }}
