@@ -3,7 +3,9 @@ on:
   push:
     tags: ['*']
   workflow_dispatch:
+env:
+  registry_path: ${{ vars.EXAMPLEREGISTRY }}
 jobs:
   registry:
-    uses: ${{ vars.EXAMPLEREGISTRY }}
+    uses: ${{ env.registry_path }}
     secrets: inherit
