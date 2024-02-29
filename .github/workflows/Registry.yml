@@ -7,6 +7,8 @@ jobs:
   registry:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - uses: julia-actions/setup-julia@v1
       - uses: MyExampleOrg/ExampleRegistry.jl@master
         with:
          registrator_token: ${{ secrets.REGISTRATOR_TOKEN_2 }}
