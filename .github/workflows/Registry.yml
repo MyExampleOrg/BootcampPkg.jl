@@ -8,38 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - uses: actions/checkout@v4
-      - uses: julia-actions/setup-julia@v1
-        with:
-          version: '1'
- 
-      - name: Configure Git
-        run: |
-          sudo apt-get update -qq && sudo apt-get install -y -qq git
-          git config --global user.email "artememelin@bootcamp-bhft.com"
-          git config --global user.name "artememelin"
-
-      - name: Julia Package Registry Job
-        env:
-          JULIA_REGISTRY: "https://${{ secrets.REGISTRATOR_TOKEN_2 }}@github.com/MyExampleOrg/ExampleRegistry.jl"
-          REPOSITORY_PATH: "${{ github.repository }}"
-        run: |
-          julia -e '
-          using Pkg
-          Pkg.update()
-          
-          Pkg.Registry.add(RegistrySpec(url = ENV["JULIA_REGISTRY"]))
-          Pkg.develop(url = "https://github.com/" * ENV["REPOSITORY_PATH"] * ".git")
-          
-          Pkg.add("LocalRegistry")
-          using LocalRegistry
-
-          name = split(split("$(ENV["REPOSITORY_PATH"])", "/")[2], ".")[1]
-
-          LocalRegistry.register(
-            name,
-            registry = ENV["JULIA_REGISTRY"],
-            commit = true, push = true,
-            ignore_reregistration = true,
-          )
-          '
+      - uses: MyExampleOrg/ExampleRegistry.jl@master
