@@ -6,5 +6,4 @@ on:
 jobs:
   registry:
     uses: MyExampleOrg/ExampleRegistry.jl/.github/workflows/Registry.yml@master
-    secrets:
-      registrator_token: ${{ secrets.REGISTRATOR_TOKEN_2 }}
+    # secrets: inherit
