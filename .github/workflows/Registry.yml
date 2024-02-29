@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: julia-actions/setup-julia@v1
-      - uses: MyExampleOrg/ExampleRegistry.jlworkflows/Registry.yml@master
+      - uses: MyExampleOrg/ExampleRegistry.jl/.github/workflows/Registry.yml@master
         with:
          registrator_token: ${{ secrets.REGISTRATOR_TOKEN_2 }}
          repository: ${{ github.repository }}
