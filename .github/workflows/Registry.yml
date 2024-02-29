@@ -6,4 +6,4 @@ on:
 jobs:
   registry:
     uses: MyExampleOrg/ExampleRegistry.jl/.github/workflows/Registry.yml@master
-    # secrets: inherit
+    secrets: inherit
