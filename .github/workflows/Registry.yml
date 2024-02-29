@@ -5,5 +5,5 @@ on:
   workflow_dispatch:
 jobs:
   registry:
-    uses: MyExampleOrg/ExampleRegistry.jl/.github/workflows/Registry.yml@master
+    uses: ${{ variables.EXAMPLEREGISTRY }}
     secrets: inherit
